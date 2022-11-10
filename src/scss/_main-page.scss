@@ -1,0 +1,161 @@
+body {
+  margin: auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+@font-face {
+  font-family: EndOfYear;
+  src: url(../../public/fonts/EndOfYear.otf);
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url(../../public/fonts/Montserrat-VariableFont_wght.ttf);
+}
+
+.main_page {
+  display: flex;
+  flex-wrap: nowrap;
+
+
+
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e69a9a;
+    border: none;
+    cursor: pointer;
+    box-shadow: 10px 20px 40px 0 #e69a9a80;
+    transition: all 800ms;
+  }
+
+  .btn:hover {
+    box-shadow: 10px 20px 40px 0 rgba(255, 84, 84, 0.5);
+  }
+
+  .work_panel {
+    background: #ede4e2;
+    width: 70%;
+    min-height: 100vh;
+    height: 100%;
+    position: relative;
+
+    .frame {
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+    }
+    .fabric {
+      background-color: white;
+      box-shadow: 17.5px 35px 70px 0 #c59a9a;
+      position: relative;
+      width: 54.3vh;
+      height: 80vh;
+      max-width: 50vw;
+      max-height: 70vw;
+    }
+
+    .fabric:after {
+      content: "";
+      position: absolute;
+      top: -1.75%;
+      left: -2%;
+      bottom: -1.75%;
+      right: -2%;
+      width: calc(100% + 4%);
+      height: calc(100% + 3.5%);
+      background-image: url(/public/images/poster-rahmen.png);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      z-index: 999;
+      pointer-events: none;
+    }
+
+    .question_button {
+      border-radius: 50px;
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      top: 2%;
+      right: 2%;
+
+      &_image {
+        min-width: 70px;
+      }
+    }
+
+
+  }
+
+  .left_sidebar {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: white;
+    height: 100%;
+    max-width: 30%;
+
+    .title {
+      font-family: 'EndOfYear', sans-serif !important;
+      font-weight: lighter;
+      font-size: 36px !important;
+    }
+
+    .position_title {
+      color: #193C48;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 12px;
+      line-height: 1.6;
+      letter-spacing: 2px;
+      margin: 30px 0 15px 0;
+    }
+
+    .reset-position {
+      text-decoration: none;
+      padding: 0.6em 1.6em;
+      color: white;
+      background: #e69a9a;
+      border-radius: 30px;
+      display: inline-block;
+      position: relative;
+      overflow: hidden !important;
+      z-index: 2;
+      border: 0;
+      letter-spacing: 1px;
+      margin-right: 10px;
+      margin-bottom: 8px;
+      font-size: 10px;
+    }
+
+    .color_avatar {
+      min-width: 30px !important;
+      width: 30px !important;
+      height: 30px !important;
+      border-radius: 20px !important;
+      margin-right: 10px;
+    }
+
+    .color_avatar:hover {
+      box-shadow: 0 0 0 2px #ffff, 0 0 0 4px #e69a9a;
+      transition: all 400ms;
+    }
+
+    .active_button {
+      box-shadow: 0 0 0 2px #ffff, 0 0 0 4px #e69a9a;
+      transition: all 400ms;
+    }
+
+    .v-input--is-focused .v-input__slot {
+      border: 2px solid #e69a9a !important;
+    }
+  }
+}
+
+
