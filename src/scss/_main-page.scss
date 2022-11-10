@@ -1,36 +1,25 @@
 body {
   margin: auto;
-  font-family: 'Montserrat', sans-serif;
-}
-
-@font-face {
-  font-family: EndOfYear;
-  src: url(../../public/fonts/EndOfYear.otf);
-}
-
-@font-face {
-  font-family: Montserrat;
-  src: url(../../public/fonts/Montserrat-VariableFont_wght.ttf);
+  font-family: $font-family-base;
 }
 
 .main_page {
   display: flex;
   flex-wrap: nowrap;
 
-
-  .btn {
+  .primary_button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #e69a9a;
+    background: $main-background;
     border: none;
     cursor: pointer;
-    box-shadow: 10px 20px 40px 0 #e69a9a80;
+    box-shadow: $shadow-button;
     transition: all 800ms;
-  }
 
-  .btn:hover {
-    box-shadow: 10px 20px 40px 0 rgba(255, 84, 84, 0.5);
+    &:hover {
+      box-shadow: $shadow-button-hover;
+    }
   }
 
   .work_panel {
@@ -55,28 +44,29 @@ body {
       height: 80vh;
       max-width: 50vw;
       max-height: 70vw;
-    }
 
-    .fabric:after {
-      content: "";
-      position: absolute;
-      top: -1.75%;
-      left: -2%;
-      bottom: -1.75%;
-      right: -2%;
-      width: calc(100% + 4%);
-      height: calc(100% + 3.5%);
-      background-image: url(/public/images/poster-rahmen.png);
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      background-position: center;
-      z-index: 999;
-      pointer-events: none;
+      &:after {
+        content: "";
+        position: absolute;
+        top: -1.75%;
+        left: -2%;
+        bottom: -1.75%;
+        right: -2%;
+        width: calc(100% + 4%);
+        height: calc(100% + 3.5%);
+        background-image: url(/images/poster-rahmen.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 999;
+        pointer-events: none;
+      }
     }
 
     .question_button {
       border-radius: 50px;
       position: absolute;
+      z-index: 9999;
       width: 70px;
       height: 70px;
       top: 2%;
@@ -85,9 +75,11 @@ body {
       &_image {
         min-width: 70px;
       }
+
+      &:hover {
+        box-shadow: $shadow-button-hover;
+      }
     }
-
-
   }
 
   .left_sidebar {
@@ -102,7 +94,7 @@ body {
     max-width: 30%;
 
     .title {
-      font-family: 'EndOfYear', sans-serif !important;
+      font-family: $font-family-title;
       font-weight: lighter;
       font-size: 36px !important;
     }
@@ -121,7 +113,7 @@ body {
       text-decoration: none;
       padding: 0.6em 1.6em;
       color: white;
-      background: #e69a9a;
+      background: $main-background;
       border-radius: 30px;
       display: inline-block;
       position: relative;
@@ -140,20 +132,24 @@ body {
       height: 30px !important;
       border-radius: 20px !important;
       margin-right: 10px;
-    }
 
-    .color_avatar:hover {
-      box-shadow: 0 0 0 2px #ffff, 0 0 0 4px #e69a9a;
-      transition: all 400ms;
+      &:hover {
+        box-shadow: 0 0 0 2px white, 0 0 0 4px $main-background;
+        transition: all 400ms;
+      }
     }
 
     .active_button {
-      box-shadow: 0 0 0 2px #ffff, 0 0 0 4px #e69a9a;
+      box-shadow: 0 0 0 2px white, 0 0 0 4px $main-background;
       transition: all 400ms;
     }
 
-    .v-input--is-focused .v-input__slot {
-      border: 2px solid #e69a9a !important;
+    .v-input   {
+      &--is-focused .v-input {
+        &__slot {
+          border: 2px solid $main-background !important;
+        }
+      }
     }
   }
 }

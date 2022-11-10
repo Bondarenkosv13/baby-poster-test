@@ -1,6 +1,5 @@
 <template>
   <v-app>
-
     <v-main>
       <MainPage/>
     </v-main>
@@ -12,13 +11,8 @@ import MainPage from './pages/main-page';
 
 export default {
   name: 'App',
-
   components: {
     MainPage,
   },
-
-  data: () => ({
-    //
-  }),
 };
 </script>
