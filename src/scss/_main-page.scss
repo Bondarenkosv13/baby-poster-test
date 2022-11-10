@@ -18,7 +18,6 @@ body {
   flex-wrap: nowrap;
 
 
-
   .btn {
     display: flex;
     justify-content: center;
@@ -43,10 +42,11 @@ body {
 
     .frame {
       position: absolute;
-      top:50%;
-      left:50%;
-      transform:translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
+
     .fabric {
       background-color: white;
       box-shadow: 17.5px 35px 70px 0 #c59a9a;

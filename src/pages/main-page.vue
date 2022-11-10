@@ -1,11 +1,14 @@
 <template>
   <div class="main_page">
-    <div class="work_panel">
+    <div
+        ref="workPanel"
+        class="work_panel"
+    >
       <button name="button" class="btn question_button">
         <img class="question_button_image" src="/images/icon-tipp.svg"/>
       </button>
 
-      <div class="frame">
+      <div ref="frame" class="frame">
         <div class="fabric"></div>
       </div>
       <canvas id="canvas"></canvas>
@@ -23,10 +26,10 @@
       <!-- Colors-->
       <div>
         <div class="position_title">Farbe</div>
+
         <v-btn-toggle
             v-model="color"
             color="primary"
-
             group
         >
           <v-tooltip
@@ -81,7 +84,9 @@
 </template>
 
 <script>
-import {fabric} from "fabric";
+import { fabric } from "fabric";
+
+const TITLE_POSITION_MARGIN = 50;
 
 export default {
   name: "MainPages",
@@ -130,31 +135,46 @@ export default {
         }
       ]
     },
+    topPositionImage() {
+      return this.$refs.workPanel.offsetHeight / 2 - (this.imageSize / 2)
+    },
+    leftPositionImage() {
+      return this.$refs.workPanel.offsetWidth / 2 - (this.imageSize / 2)
+    },
+    topPositionPosterTitle() {
+      return (this.$refs.workPanel.offsetHeight / 2) + (this.$refs.frame.offsetHeight / 2) - TITLE_POSITION_MARGIN
+    },
+    leftPositionPosterTitle() {
+      return this.$refs.workPanel.offsetWidth / 2 - (this.$refs.frame.offsetWidth / 2) + TITLE_POSITION_MARGIN
+    }
   },
   methods: {
     canvasInit() {
+      const workPanel = this.$refs.workPanel;
+
       this.canvas = new fabric.Canvas('canvas');
-
-      const worPanel = document.querySelector('.work_panel');
-      const frame = document.querySelector('.frame');
-
-      this.canvas.setWidth(worPanel.offsetWidth);
-      this.canvas.setHeight(worPanel.offsetHeight);
+      this.canvas.setWidth(workPanel.offsetWidth);
+      this.canvas.setHeight(workPanel.offsetHeight);
+    },
+    fabricInit() {
       fabric.Image.fromURL(document.URL + 'images/test.svg', (img) => {
         img.scale(1.0).set({
-          top: worPanel.offsetHeight / 2 - (this.imageSize / 2),
-          left: worPanel.offsetWidth / 2 - (this.imageSize / 2),
+          top: this.topPositionImage,
+          left: this.leftPositionImage,
           selectable: true,
         });
-        img.filters = []
         img.scaleToWidth(this.imageSize);
+        img.filters = []
         this.img = img
         this.canvas.add(img);
       });
-
+    },
+    posterTitleInit() {
       this.posterTitle = new fabric.Text('', {
-            top: worPanel.offsetHeight / 2 + (frame.offsetHeight / 2 - 70),
-            left: worPanel.offsetWidth / 2 - (frame.offsetWidth / 2 - 70)
+            fontFamily: 'Montserrat',
+        fontSize: 20,
+            top: this.topPositionPosterTitle,
+            left: this.leftPositionPosterTitle
           }
       );
       this.canvas.add(this.posterTitle);
@@ -169,15 +189,16 @@ export default {
         mode: 'tint',
         opacity: 0
       }))
-      this.$nextTick(() => {
-        this.img.applyFilters();
-        this.canvas.requestRenderAll();
-      })
+
+      this.img.applyFilters();
+      this.canvas.requestRenderAll();
     }
   },
   mounted() {
     this.$nextTick(() => {
       this.canvasInit()
+      this.fabricInit()
+      this.posterTitleInit()
     })
   }
 }
