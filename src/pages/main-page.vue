@@ -5,7 +5,7 @@
       class="work_panel"
     >
       <button name="button" class="primary_button question_button">
-        <img class="question_button_image" src="/images/icon-tipp.svg"/>
+        <img class="question_button_image" src="images/icon-tipp.svg"/>
       </button>
       <div ref="frame" class="frame">
         <div class="fabric"></div>
@@ -78,10 +78,10 @@
 </template>
 
 <script>
-import {fabric} from "fabric";
+import { fabric } from "fabric";
 
 const TITLE_POSITION_MARGIN = 50;
-const DEFAULT_IMAGE_PATH = document.URL + 'images/test.svg';
+const DEFAULT_IMAGE_PATH = 'images/test.svg';
 const COLORS = [
   {
     name: 'Blue',
@@ -137,17 +137,22 @@ export default {
       this.canvas.setHeight(workPanel.offsetHeight);
     },
     fabricInit() {
-      fabric.Image.fromURL(DEFAULT_IMAGE_PATH, (img) => {
-        img.scale(1.0).set({
-          top: this.getTopPositionImage(),
-          left: this.getLeftPositionImage(),
-          selectable: true,
-        });
-        img.scaleToWidth(this.imageSize);
-        img.filters = []
-        this.img = img
-        this.canvas.add(img);
-      });
+      const image = new fabric.Image();
+      image.setSrc(DEFAULT_IMAGE_PATH, (img) => {
+          img.scale(1.0).set({
+            top: this.getTopPositionImage(),
+            left: this.getLeftPositionImage(),
+            selectable: true,
+          });
+          img.scaleToWidth(this.imageSize);
+          img.filters = []
+          this.img = img
+          this.canvas.add(img);
+        },
+        {
+          crossOrigin: "anonymous"
+        }
+      )
     },
     posterTitleInit() {
       this.posterTitle = new fabric.Text('', {
